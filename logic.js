@@ -22,16 +22,21 @@ async function getDays(year) {
 }
 
 async function getWorkFreeDays() {
-    console.log("function getWorkFreeDays = ")
-    let days = await getDays(2006)  
-    
+    let days = await getDays(2006)    
     for(let i = 0; i < days.dagar.length ; i++) {
         if(days.dagar[i]["arbetsfri dag"] == "Ja"){
-            let dag = document.createElement("p")
-            dag.innerText = days.dagar[i].veckodag + " (" + days.dagar[i].datum + ")"
-            let container = document.getElementById("container")
-            container.appendChild(dag)
+            createHtml("p", days.dagar[i].veckodag + " (" + days.dagar[i].datum + ")", "container")
         }
     } 
-
 }
+
+function createHtml(childElement, innerText, parentElement) {
+    childElement = document.createElement(childElement)
+    childElement.innerText = innerText
+    parentElement = document.getElementById(parentElement)
+    parentElement.appendChild(childElement)
+    
+}
+
+
+    
